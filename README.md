@@ -2,6 +2,16 @@
 [![Build Status](https://travis-ci.com/paygo-dev/paygo-sdk-php.svg?branch=master)](https://travis-ci.com/paygo-dev/paygo-sdk-php)
 
 
+[![Total Downloads](https://poser.pugx.org/paygo-dev/paygo-sdk-php/downloads)](https://packagist.org/packages/paygo-dev/paygo-sdk-php)
+[![Monthly Downloads](https://poser.pugx.org/paygo-dev/paygo-sdk-php/d/monthly)](https://packagist.org/packages/paygo-dev/paygo-sdk-php)
+[![Daily Downloads](https://poser.pugx.org/paygo-dev/paygo-sdk-php/d/daily)](https://packagist.org/packages/paygo-dev/paygo-sdk-php)
+
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/paygo-dev/paygo-sdk-php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/paygo-dev/paygo-sdk-php/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/paygo-dev/paygo-sdk-php/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/paygo-dev/paygo-sdk-php/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/paygo-dev/paygo-sdk-php/badges/build.png?b=master)](https://scrutinizer-ci.com/g/paygo-dev/paygo-sdk-php/build-status/master)
+
+[![License](https://poser.pugx.org/paygo-dev/paygo-sdk-php/license)](https://packagist.org/packages/paygo-dev/paygo-sdk-php)
+
 
 
 ## Componente de integração com API's do PayGo WEB para consulta de transações

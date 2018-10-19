@@ -3,7 +3,6 @@
 namespace Tests\PayGo\Transactions\API;
 
 use PayGo\Transactions\API\TransactionAPI;
-use PayGo\Transactions\Constants\PayGoTransactionParameterConst;
 use PayGo\Transactions\Constants\SourceConst;
 use PayGo\Transactions\Contracts\Query\Filters;
 use PayGo\Transactions\Contracts\Query\DateRange;
@@ -29,12 +28,6 @@ class TransactionAPITest extends PHPUnit
     public function __construct()
     {
         $this->transacaoApi = new TransactionAPI();
-
-        $client = new \PayGo\Client([
-            PayGoTransactionParameterConst::PAYGO_TRANSACTIONS_HOST => "http://api.paygomais.com.br",
-            PayGoTransactionParameterConst::PAYGO_TRANSACTIONS_TIMEOUT => 10,
-            PayGoTransactionParameterConst::PAYGO_TRANSACTIONS_TOKEN => "e258c0g0-4795-4bf3-bf12-483737e9cac3",
-        ]);
     }
 
     /**

@@ -1,4 +1,6 @@
 
+## SDK para consulta de transações do PayGo WEB
+
 [![Build Status](https://travis-ci.com/paygo-dev/paygo-sdk-php.svg?branch=master)](https://travis-ci.com/paygo-dev/paygo-sdk-php)
 
 
@@ -12,34 +14,42 @@
 
 [![License](https://poser.pugx.org/paygo-dev/paygo-sdk-php/license)](https://packagist.org/packages/paygo-dev/paygo-sdk-php)
 
+## Dependências
+
+#### require
+* PHP >= 5.6
+* guzzlehttp/guzzle 5.3.1
+
+#### require-dev
+* phpunit/phpunit ^4.8
 
 
-## Componente de integração com API's do PayGo WEB para consulta de transações
-
-Este Projeto tem por finalidade prover uma integração mais simples e padronizada com as API's do PayGo utilizando PHP >=5.6
-
-### Instalação
+## Instalação
 
 Execute em seu shell:
 
-```sh
-composer require paygo-dev/paygo-sdk-php
-```
+    composer require paygo-dev/paygo-sdk-php
 
-### Configurando de variáveis de ambiente
+Adicionando a dependência ao seu arquivo composer.json
+
+    {
+        "require": {
+           "paygo-dev/paygo-sdk-php" : "*"
+        }
+    }
+
+## Variáveis de ambiente
+
+    PAYGO_TRANSACTIONS_HOST=http://api.paygomais.com.br
+    PAYGO_TRANSACTIONS_TIMEOUT=10
+    PAYGO_TRANSACTIONS_TOKEN=e258c0g0-4795-4bf3-bf12-483737e9cac3
 
 
-Variáveis de ambiente
+## Configurando a autenticação
 
-```env
-PAYGO_TRANSACTIONS_HOST=http://api.paygomais.com.br
-PAYGO_TRANSACTIONS_TIMEOUT=10
-PAYGO_TRANSACTIONS_TOKEN=e258c0g0-4795-4bf3-bf12-483737e9cac3
-```
+### Informar parâmetros de integração
 
-Inicialização de cliente setando parâmetros
-
-    * Passar como parâmetro no construtor em forma de array.
+Para que o SDK consiga acessar as API's é necessário informar os parâmetros conforme exemplo abaixo, caso não seja específicado o SDK irá aferir através de variáveis de ambiente.
 
 ```php
 $client = new \PayGo\Client([
@@ -51,45 +61,151 @@ $client = new \PayGo\Client([
 $transactionApi = new \PayGo\Transactions\API\TransactionAPI($client);
 ```
 
-    * Passar como parâmetro a partir de uma instância do Client.
+Os parâmetros poder ser definidos ou alterados conforme abaixo.
 
 ```php
-$client = new \PayGo\Client();
-
-$client->setParameter(PayGoTransactionParameterConst::PAYGO_TRANSACTIONS_HOST, "http://api.paygomais.com.br");
-$client->setParameter(PayGoTransactionParameterConst::PAYGO_TRANSACTIONS_TIMEOUT, 10);
-$client->setParameter(PayGoTransactionParameterConst::PAYGO_TRANSACTIONS_TOKEN, "e258c0g0-4795-4bf3-bf12-483737e9cac3");
+$client = (new Client())
+            ->setParameter(PayGoTransactionParameterConst::PAYGO_TRANSACTIONS_HOST, "http://api.paygomais.com.br")
+            ->setParameter(PayGoTransactionParameterConst::PAYGO_TRANSACTIONS_TIMEOUT, 10)
+            ->setParameter(PayGoTransactionParameterConst::PAYGO_TRANSACTIONS_TOKEN, "e258c0g0-4795-4bf3-bf12-483737e9cac3");
 
 $transactionApi = new \PayGo\Transactions\API\TransactionAPI($client);
 ```
 
-### Parâmetros
+Caso os parâmetros não sejam informados o SDK irá aferir através de variáveis de ambiente caso tenha sido configuradas
 
-    PayGoTransactionParameterConst::PAYGO_TRANSACTIONS_HOST => URL
-    PayGoTransactionParameterConst::PAYGO_TRANSACTIONS_TIMEOUT => Tempo de Timeout da requisição, como padrão o tempo é de 10 segundos
-    PayGoTransactionParameterConst::PAYGO_TRANSACTIONS_TOKEN => Token de acesso
-
-
-Para obter a versão configure seu composer.json conforme exemplo abaixo:
-
-```json
-{
-    "name": "paygo-dev/app",
-    "authors": [
-        {
-            "name": "Adriano M. La Selva",
-            "email": "adrianolaselva@gmail.com"
-        }
-    ],
-    "require": {
-        "paygo-dev/paygo-sdk-php": "0.1.*"
-    },
-	"prefer-stable" : true
-}
+```php
+$transactionApi = new \PayGo\Transactions\API\TransactionAPI();
 ```
 
-```sh
-phpunit
+### Exemplos de utilização
+
+
+Exemplo de consulta por intervalo de data, retornando apenas um registro.
+
+```php
+$response = $this->transacaoApi->filter(
+            (new Query())
+                ->setLimit(1)
+                ->setFilters(
+                    (new Filters())
+                        ->setServerDateRange(
+                            (new DateRange())
+                                ->setFromDate(\DateTime::createFromFormat('Y-m-d', '2015-01-01'))
+                                ->setEndDate(\DateTime::createFromFormat('Y-m-d', '2018-12-01'))
+                        )
+                )
+        );
+
+print_r($response->getStatusCode());
+print_r($response->json());
+```
+
+Exemplo de consulta por intervalo de data e tipos de transações, retornando apenas um registro.
+
+```php
+$response = $this->transacaoApi->filter(
+            (new Query())
+                ->setLimit(1)
+                ->setFilters(
+                    (new Filters())
+                        ->setTypes([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,33,34])
+                        ->setServerDateRange(
+                            (new DateRange())
+                                ->setFromDate(\DateTime::createFromFormat('Y-m-d', '2015-01-01'))
+                                ->setEndDate(\DateTime::createFromFormat('Y-m-d', '2018-12-01'))
+                        )
+                )
+        );
+
+print_r($response->getStatusCode());
+print_r($response->json());
+```
+
+Exemplo de consulta por intervalo de data e status de transações, retornando apenas um registro.
+
+```php
+$response = $this->transacaoApi->filter(
+            (new Query())
+                ->setLimit(1)
+                ->setFilters(
+                    (new Filters())
+                        ->setStatus([289,8737])
+                        ->setServerDateRange(
+                            (new DateRange())
+                                ->setFromDate(\DateTime::createFromFormat('Y-m-d', '2015-01-01'))
+                                ->setEndDate(\DateTime::createFromFormat('Y-m-d', '2018-12-01'))
+                        )
+                )
+        );
+
+print_r($response->getStatusCode());
+print_r($response->json());
+```
+
+Exemplo de consulta omitindo alguns campos do retorno.
+
+```php
+$response = $this->transacaoApi->filter(
+            (new Query())
+                ->setLimit(1)
+                ->setSource(
+                    (new Source())
+                        ->setExclude([
+                            SourceConst::AFFILIATION_COMPANY_DATA_TAX_ID,
+                            SourceConst::FULL_RECEIPT_COPY,
+                            SourceConst::AFFILIATION_COMPANY_DATA_DISPLAY_NAME
+                        ])
+                )
+        );
+
+print_r($response->getStatusCode());
+print_r($response->json());
+```
+
+Exemplo de consulta expecificando alguns campos do retorno.
+
+```php
+$response = $this->transacaoApi->filter(
+            (new Query())
+                ->setLimit(1)
+                ->setSource(
+                    (new Source())
+                        ->setInclude([
+                            SourceConst::AFFILIATION_COMPANY_DATA_TAX_ID,
+                            SourceConst::FULL_RECEIPT_COPY,
+                            SourceConst::AFFILIATION_COMPANY_DATA_DISPLAY_NAME
+                        ])
+                )
+        );
+
+print_r($response->getStatusCode());
+print_r($response->json());
+```
+
+Exemplo de consulta expecificando alguns campos do retorno e fintrando por nome da rede adquirente.
+
+```php
+$response = $this->transacaoApi->filter(
+            (new Query())
+                ->setLimit(1)
+                ->setFilters(
+                    (new Filters())
+                        ->setAuthorizerNames(["REDE"])
+                )
+                ->setSource(
+                    (new Source())
+                        ->setInclude([
+                            SourceConst::AFFILIATION_COMPANY_DATA_TAX_ID,
+                            SourceConst::FULL_RECEIPT_COPY,
+                            SourceConst::AFFILIATION_COMPANY_DATA_DISPLAY_NAME,
+                            SourceConst::AUTHORIZER_NAME,
+                        ])
+                )
+        );
+
+print_r($response->getStatusCode());
+print_r($response->json());
 ```
 
 [GitHub]: <https://github.com/paygo-dev/paygo-sdk-php.git>

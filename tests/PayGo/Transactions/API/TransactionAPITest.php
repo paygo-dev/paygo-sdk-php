@@ -2,6 +2,7 @@
 
 namespace Tests\PayGo\Transactions\API;
 
+use PayGo\Client;
 use PayGo\Transactions\API\TransactionAPI;
 use PayGo\Transactions\Constants\SourceConst;
 use PayGo\Transactions\Contracts\Query\Filters;

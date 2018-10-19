@@ -1,5 +1,7 @@
 
-## SDK para consulta de transações do PayGo WEB v1
+<img src="https://marketplace-ntk.pismo.io/assets/images/logos/PayGo/logo-PayGo-white.svg" align="right" />
+
+# SDK para consulta de transações do PayGo WEB v1
 
 [![Build Status](https://travis-ci.com/paygo-dev/paygo-sdk-php.svg?branch=master)](https://travis-ci.com/paygo-dev/paygo-sdk-php)
 

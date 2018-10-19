@@ -1,4 +1,9 @@
 
+[![Build Status](https://travis-ci.com/paygo-dev/paygo-sdk-php.svg?branch=master)](https://travis-ci.com/paygo-dev/paygo-sdk-php)
+
+
+
+
 ## Componente de integração com API's do PayGo WEB para consulta de transações
 
 Este Projeto tem por finalidade prover uma integração mais simples e padronizada com as API's do PayGo utilizando PHP >=5.6

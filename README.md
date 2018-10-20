@@ -13,9 +13,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/paygo-dev/paygo-sdk-php/v/stable)](https://packagist.org/packages/paygo-dev/paygo-sdk-php)
 [![Latest Unstable Version](https://poser.pugx.org/paygo-dev/paygo-sdk-php/v/unstable)](https://packagist.org/packages/paygo-dev/paygo-sdk-php)
-
 [![License](https://poser.pugx.org/paygo-dev/paygo-sdk-php/license)](https://packagist.org/packages/paygo-dev/paygo-sdk-php)
-
 
 ## Dependências
 
@@ -596,3 +594,7 @@ TOTAL:                        R$ 50,00
 
 
 [GitHub]: <https://github.com/paygo-dev/paygo-sdk-php.git>
+
+## Licença
+
+[The MIT License](https://github.com/paygo-dev/paygo-sdk-php/blob/master/LICENSE)

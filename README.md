@@ -1,5 +1,5 @@
 
-<img src="https://marketplace-ntk.pismo.io/assets/images/logos/PayGo/logo-PayGo-white.svg" align="right" />
+<img src="https://marketplace-ntk.pismo.io/assets/images/logos/PayGo/logo-PayGo-color.svg" align="right" />
 
 # SDK para consulta de transações do PayGo WEB v1
 
@@ -13,6 +13,8 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/paygo-dev/paygo-sdk-php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/paygo-dev/paygo-sdk-php/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/paygo-dev/paygo-sdk-php/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/paygo-dev/paygo-sdk-php/?branch=master)
 [![Build Status](https://scrutinizer-ci.com/g/paygo-dev/paygo-sdk-php/badges/build.png?b=master)](https://scrutinizer-ci.com/g/paygo-dev/paygo-sdk-php/build-status/master)
+
+
 
 [![License](https://poser.pugx.org/paygo-dev/paygo-sdk-php/license)](https://packagist.org/packages/paygo-dev/paygo-sdk-php)
 

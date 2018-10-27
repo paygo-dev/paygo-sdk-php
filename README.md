@@ -54,9 +54,9 @@ Para que o SDK consiga acessar as API's é necessário informar os parâmetros c
 
 ```php
 $client = new \PayGo\Client([
-    PayGoTransactionParameterConst::PAYGO_TRANSACTIONS_HOST => "http://api.paygomais.com.br",
-    PayGoTransactionParameterConst::PAYGO_TRANSACTIONS_TIMEOUT => 10,
-    PayGoTransactionParameterConst::PAYGO_TRANSACTIONS_TOKEN => "e258c0g0-4795-4bf3-bf12-483737e9cac3",
+    'PAYGO_TRANSACTIONS_HOST' => "http://api.paygomais.com.br",
+    'PAYGO_TRANSACTIONS_TIMEOUT' => 10,
+    'PAYGO_TRANSACTIONS_TOKEN' => "e258c0g0-4795-4bf3-bf12-483737e9cac3",
 ]);
 
 $transactionApi = new \PayGo\Transactions\API\TransactionAPI($client);
@@ -66,9 +66,9 @@ Os parâmetros poder ser definidos ou alterados conforme abaixo.
 
 ```php
 $client = (new Client())
-            ->setParameter(PayGoTransactionParameterConst::PAYGO_TRANSACTIONS_HOST, "http://api.paygomais.com.br")
-            ->setParameter(PayGoTransactionParameterConst::PAYGO_TRANSACTIONS_TIMEOUT, 10)
-            ->setParameter(PayGoTransactionParameterConst::PAYGO_TRANSACTIONS_TOKEN, "e258c0g0-4795-4bf3-bf12-483737e9cac3");
+            ->setParameter('PAYGO_TRANSACTIONS_HOST', "http://api.paygomais.com.br")
+            ->setParameter('PAYGO_TRANSACTIONS_TIMEOUT', 10)
+            ->setParameter('PAYGO_TRANSACTIONS_TOKEN', "e258c0g0-4795-4bf3-bf12-483737e9cac3");
 
 $transactionApi = new \PayGo\Transactions\API\TransactionAPI($client);
 ```
@@ -85,13 +85,13 @@ $transactionApi = new \PayGo\Transactions\API\TransactionAPI();
 Exemplo de consulta por intervalo de data, retornando apenas um registro.
 
 ```php
-$response = $this->transacaoApi->filter(
-            (new Query())
+$response = $transactionApi->filter(
+            (new \PayGo\Transactions\Contracts\Query\Query())
                 ->setLimit(1)
                 ->setFilters(
-                    (new Filters())
+                    (new \PayGo\Transactions\Contracts\Query\Filters())
                         ->setServerDateRange(
-                            (new DateRange())
+                            (new \PayGo\Transactions\Contracts\Query\DateRange())
                                 ->setFromDate(\DateTime::createFromFormat('Y-m-d', '2015-01-01'))
                                 ->setEndDate(\DateTime::createFromFormat('Y-m-d', '2018-12-01'))
                         )
@@ -188,14 +188,14 @@ TOTAL:                        R$ 50,00
 Exemplo de consulta por intervalo de data e tipos de transações, retornando apenas um registro.
 
 ```php
-$response = $this->transacaoApi->filter(
-            (new Query())
+$response = $transactionApi->filter(
+            (new \PayGo\Transactions\Contracts\Query\Query())
                 ->setLimit(1)
                 ->setFilters(
-                    (new Filters())
+                    (new \PayGo\Transactions\Contracts\Query\Filters())
                         ->setTypes([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,33,34])
                         ->setServerDateRange(
-                            (new DateRange())
+                            (new \PayGo\Transactions\Contracts\Query\DateRange())
                                 ->setFromDate(\DateTime::createFromFormat('Y-m-d', '2015-01-01'))
                                 ->setEndDate(\DateTime::createFromFormat('Y-m-d', '2018-12-01'))
                         )
@@ -292,14 +292,14 @@ TOTAL:                        R$ 50,00
 Exemplo de consulta por intervalo de data e status de transações, retornando apenas um registro.
 
 ```php
-$response = $this->transacaoApi->filter(
-            (new Query())
+$response = $transactionApi->filter(
+            (new \PayGo\Transactions\Contracts\Query\Query())
                 ->setLimit(1)
                 ->setFilters(
-                    (new Filters())
+                    (new \PayGo\Transactions\Contracts\Query\Filters())
                         ->setStatus([289,8737])
                         ->setServerDateRange(
-                            (new DateRange())
+                            (new \PayGo\Transactions\Contracts\Query\DateRange())
                                 ->setFromDate(\DateTime::createFromFormat('Y-m-d', '2015-01-01'))
                                 ->setEndDate(\DateTime::createFromFormat('Y-m-d', '2018-12-01'))
                         )
@@ -396,11 +396,11 @@ TOTAL:                        R$ 50,00
 Exemplo de consulta omitindo alguns campos do retorno.
 
 ```php
-$response = $this->transacaoApi->filter(
-            (new Query())
+$response = $transactionApi->filter(
+            (new \PayGo\Transactions\Contracts\Query\Query())
                 ->setLimit(1)
                 ->setSource(
-                    (new Source())
+                    (new \PayGo\Transactions\Contracts\Query\Source())
                         ->setExclude([
                             SourceConst::AFFILIATION_COMPANY_DATA_TAX_ID,
                             SourceConst::FULL_RECEIPT_COPY,
@@ -474,11 +474,11 @@ array(1) {
 Exemplo de consulta expecificando alguns campos do retorno.
 
 ```php
-$response = $this->transacaoApi->filter(
-            (new Query())
+$response = $transactionApi->filter(
+            (new \PayGo\Transactions\Contracts\Query\Query())
                 ->setLimit(1)
                 ->setSource(
-                    (new Source())
+                    (new \PayGo\Transactions\Contracts\Query\Source())
                         ->setInclude([
                             SourceConst::AFFILIATION_COMPANY_DATA_TAX_ID,
                             SourceConst::FULL_RECEIPT_COPY,
@@ -531,15 +531,15 @@ TOTAL:                        R$ 50,00
 Exemplo de consulta expecificando alguns campos do retorno e fintrando por nome da rede adquirente.
 
 ```php
-$response = $this->transacaoApi->filter(
-            (new Query())
+$response = $transactionApi->filter(
+            (new \PayGo\Transactions\Contracts\Query\Query())
                 ->setLimit(1)
                 ->setFilters(
                     (new Filters())
                         ->setAuthorizerNames(["REDE"])
                 )
                 ->setSource(
-                    (new Source())
+                    (new \PayGo\Transactions\Contracts\Query\Source())
                         ->setInclude([
                             SourceConst::AFFILIATION_COMPANY_DATA_TAX_ID,
                             SourceConst::FULL_RECEIPT_COPY,

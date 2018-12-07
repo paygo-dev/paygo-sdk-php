@@ -79,7 +79,8 @@ abstract class AbstractAPI
                 PayGoTransactionParameterConst::PAYGO_TRANSACTIONS_TIMEOUT),
             'verify' => false,
             'defaults' => [
-                'headers' => $this->headers
+                'headers' => $this->headers,
+                'exceptions' => false,
             ]
         ]);
     }

@@ -1,4 +1,3 @@
-<img src="https://marketplace-ntk.pismo.io/assets/images/logos/PayGo/logo-PayGo-color.svg" align="right" />
 
 # PayGo WEB client SDK
 
